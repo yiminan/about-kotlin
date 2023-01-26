@@ -5,4 +5,5 @@ fun main() {
 
     val age = 10L
     val age2: Long = 10L
+    println("age:${age}, age2:${age2}")
 }
