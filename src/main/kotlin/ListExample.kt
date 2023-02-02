@@ -1,4 +1,4 @@
-// Example for "variable"
+// Example nullable, non-nullable cases for "List"
 fun main() {
     val a: List<Int> = emptyList()
     val b: List<Int> = listOf(1, 2, 3, 4)
