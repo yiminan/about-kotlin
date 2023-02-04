@@ -12,4 +12,21 @@ fun main() {
 
     var safeCallNumber: Long? = null
     safeCallNumber = 10L
+
+    val dollar = 10 // 기본이 Int
+    if (dollar is Int) {
+        println("dollar is Int")
+    }
+    val dollar2 = 10L
+    if (dollar2 is Long) {
+        println("dollar2 is Long")
+    }
+    val dollar3 = 10.0 // 기본이 Double
+    if (dollar3 is Double) {
+        println("dollar3 is Double")
+    }
+    val dollar4 = 10.0f
+    if (dollar4 is Float) {
+        println("dollar4 is Float")
+    }
 }
