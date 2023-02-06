@@ -1,4 +1,4 @@
-// Example nullable, non-nullable cases for "List"
+// List nullable 과 non-nullable 예시
 fun main() {
     val a: List<Int> = emptyList()
     val b: List<Int> = listOf(1, 2, 3, 4)
