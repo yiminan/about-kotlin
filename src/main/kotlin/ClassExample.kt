@@ -1,5 +1,3 @@
-package _class
-
 /**
  * - In same class
  */
