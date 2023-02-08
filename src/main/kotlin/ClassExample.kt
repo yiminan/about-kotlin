@@ -27,7 +27,7 @@ internal class InternalClass {
  * - In other module
  * - from everywhere
  */
-public class PublicClass {
+public final class PublicClass {
 }
 
 /**
