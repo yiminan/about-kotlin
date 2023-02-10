@@ -32,6 +32,7 @@ public final class PublicClass {
 
 /**
  * Same as public class
+ * = PublicClass
  */
 class DefaultClass {
 }
