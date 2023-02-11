@@ -1,6 +1,9 @@
+import java.util.*
+
 // List nullable 과 non-nullable 예시
 fun main() {
     val a: List<Int> = emptyList()
+    val immutableList = a.plus(5) // create new list
     val b: List<Int> = listOf(1, 2, 3, 4)
 
     val c: List<Int?> = listOf(1, 2, null, 4)
