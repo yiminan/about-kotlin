@@ -1,5 +1,3 @@
-import java.util.*
-
 // List nullable 과 non-nullable 예시
 fun main() {
     val a: List<Int> = emptyList()
