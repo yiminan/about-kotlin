@@ -17,4 +17,13 @@ fun main() {
 
 //    val immutableList = a.add(5) // error
     val immutableList = a.plus(5) // create new list
+
+    val list = listOf(1, 2, 3)
+    val mutableListOf = mutableListOf(1, 2, 3)
+
+    val set = setOf(1, 2, 3)
+    val mutableSet = mutableSetOf(1, 2, 3)
+
+    val map = mapOf(1 to "1", 2 to "2", 3 to "3")
+    val mutableMap = mutableMapOf(1 to "1", 2 to "2", 3 to "3")
 }
