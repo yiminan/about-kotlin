@@ -16,4 +16,11 @@ class ListTest : FunSpec({
 
         list shouldHaveSize 4
     }
+
+    test("element로 null이 들어가는 list의 size는 4이다.") {
+        val list: List<Int?> = listOf(1, 2, null, 4)
+
+        list shouldContain null
+        list shouldHaveSize 4
+    }
 })
