@@ -4,11 +4,13 @@ import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.maps.shouldContainExactly
+import io.kotest.matchers.maps.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
 
-class ListTest : FunSpec({
+class CollectionTest : FunSpec({
     test("emptyList의 size는 0이다.") {
         val emptyList: List<Int> = emptyList()
 
@@ -91,8 +93,29 @@ class ListTest : FunSpec({
         set shouldContainExactly setOf(1, 2, 3)
     }
 
-    test("ddd") {
-        val map = mapOf(1 to "1", 2 to "2", 3 to "3")
+    test("MutableMap은 기존 MutableMap의 put을 통해 element 추가가 가능하다.") {
         val mutableMap = mutableMapOf(1 to "1", 2 to "2", 3 to "3")
+        mutableMap[4] = "4" // == mutableMap.put(4, "4")
+
+        mutableMap shouldHaveSize 4
+        mutableMap shouldContainExactly mapOf(1 to "1", 2 to "2", 3 to "3", 4 to "4")
+    }
+
+    test("MutableMap은 기존 MutableMap의 plus를 통해 element 추가가 가능하다.") {
+        val mutableMap = mutableMapOf(1 to "1", 2 to "2", 3 to "3")
+        val mutableMap2 = mutableMap.plus(4 to "4")
+
+        mutableMap shouldHaveSize 3
+        mutableMap2 shouldHaveSize 4
+        mutableMap shouldNotBeSameInstanceAs mutableMap2
+    }
+
+    test("mapOf로 생성된 Map은 plus를 통해 element 추가가 가능하다.") {
+        val map = mapOf(1 to "1", 2 to "2", 3 to "3")
+        val map2 = map.plus(4 to "4")
+
+        map shouldHaveSize 3
+        map2 shouldHaveSize 4
+        map shouldNotBeSameInstanceAs map2
     }
 })
