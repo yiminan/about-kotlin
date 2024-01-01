@@ -11,52 +11,59 @@ import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.types.shouldNotBeSameInstanceAs
 
 class CollectionTest : FunSpec({
-    test("emptyList의 size는 0이다.") {
-        val emptyList: List<Int> = emptyList()
 
-        emptyList shouldHaveSize 0
+    context("enabled test run") {
+        test("emptyList의 size는 0이다.") {
+            val emptyList: List<Int> = emptyList()
+
+            emptyList shouldHaveSize 0
+        }
+
+        test("listOf(1, 2, 3, 4)의 size는 4이다.") {
+            val list: List<Int> = listOf(1, 2, 3, 4)
+
+            list shouldHaveSize 4
+        }
+
+        test("element로 null이 들어가는 list의 size는 4이다.") {
+            val list: List<Int?> = listOf(1, 2, null, 4)
+
+            list shouldContain null
+            list shouldHaveSize 4
+        }
+
+        test("List가 null이 할당되면 null이다.") {
+            val list: List<Int>? = null
+
+            list shouldBe null
+        }
+
+        test("List가 할당되면 null이 아니다.") {
+            val f: List<Int> = listOf(1, 2, 3, 4)
+
+            f shouldNotBe null
+            f shouldHaveSize 4
+        }
+
+        test("MutableList는 변경이 가능하다.") {
+            val mutableList = mutableListOf(1, 2, 3, 4)
+            mutableList.add(5)
+
+            mutableList shouldHaveSize 5
+            mutableList shouldContainExactly listOf(1, 2, 3, 4, 5)
+        }
+
+        test("listOf로 생성된 List는 plus를 통해 element 추가가 가능하다.") {
+            val list = listOf(1, 2, 3, 4)
+            val immutableList = list.plus(5)
+
+            immutableList shouldHaveSize 5
+            immutableList shouldContainExactly listOf(1, 2, 3, 4, 5)
+        }
     }
 
-    test("listOf(1, 2, 3, 4)의 size는 4이다.") {
-        val list: List<Int> = listOf(1, 2, 3, 4)
-
-        list shouldHaveSize 4
-    }
-
-    test("element로 null이 들어가는 list의 size는 4이다.") {
-        val list: List<Int?> = listOf(1, 2, null, 4)
-
-        list shouldContain null
-        list shouldHaveSize 4
-    }
-
-    test("List가 null이 할당되면 null이다.") {
-        val list: List<Int>? = null
-
-        list shouldBe null
-    }
-
-    test("List가 할당되면 null이 아니다.") {
-        val f: List<Int> = listOf(1, 2, 3, 4)
-
-        f shouldNotBe null
-        f shouldHaveSize 4
-    }
-
-    test("MutableList는 변경이 가능하다.") {
-        val mutableList = mutableListOf(1, 2, 3, 4)
-        mutableList.add(5)
-
-        mutableList shouldHaveSize 5
-        mutableList shouldContainExactly listOf(1, 2, 3, 4, 5)
-    }
-
-    test("listOf로 생성된 List는 plus를 통해 element 추가가 가능하다.") {
-        val list = listOf(1, 2, 3, 4)
-        val immutableList = list.plus(5)
-
-        immutableList shouldHaveSize 5
-        immutableList shouldContainExactly listOf(1, 2, 3, 4, 5)
+    xcontext("disabled test run") {
+        beforeTest { println("beforeTest") }
     }
 
     test("MutableList는 기존 MutableList의 add를 통해 element 추가가 가능하다.") {
