@@ -62,42 +62,81 @@ class CollectionTest : FunSpec({
         }
     }
 
-    xcontext("disabled test run") {
-        beforeTest { println("beforeTest") }
-    }
+    context("test: Set") {
+        test("emptySet의 size는 0이다.") {
+            val emptySet: Set<Int> = emptySet()
 
-    test("MutableList는 기존 MutableList의 add를 통해 element 추가가 가능하다.") {
-        val mutableSet = mutableSetOf(1, 2, 3)
-        val isAdded = mutableSet.add(4)
+            emptySet shouldHaveSize 0
+        }
 
-        isAdded shouldBe true
-        mutableSet shouldHaveSize 4
-        mutableSet shouldContainExactly setOf(1, 2, 3, 4)
-    }
+        test("setOf(1, 2, 3, 4)의 size는 4이다.") {
+            val set: Set<Int> = setOf(1, 2, 3, 4)
 
-    test("MutableList는 기존 MutableList의 plus를 통해 element 추가가 가능하다.") {
-        val mutableSet = mutableSetOf(1, 2, 3)
-        val mutableSet2 = mutableSet.plus(4)
+            set shouldHaveSize 4
+        }
 
-        mutableSet shouldHaveSize 3
-        mutableSet2 shouldHaveSize 4
-        mutableSet shouldNotBeSameInstanceAs mutableSet2
-    }
+        test("element로 null이 들어가는 set의 size는 4이다.") {
+            val set: Set<Int?> = setOf(1, 2, null, 4)
 
-    test("setOf로 생성된 Set은 plus를 통해 element 추가가 가능하다.") {
-        val set = setOf(1, 2, 3)
-        val set2 = set.plus(4)
+            set shouldContain null
+            set shouldHaveSize 4
+        }
 
-        set shouldHaveSize 3
-        set2 shouldHaveSize 4
-        set shouldNotBeSameInstanceAs set2
-    }
+        test("Set가 null이 할당되면 null이다.") {
+            val set: Set<Int>? = null
 
-    test("setOf는 중복된 element를 허용하지 않는다.") {
-        val set = setOf(1, 2, 3, 1, 1, 2, 3, 3)
+            set shouldBe null
+        }
 
-        set shouldHaveSize 3
-        set shouldContainExactly setOf(1, 2, 3)
+        test("Set가 할당되면 null이 아니다.") {
+            val f: Set<Int> = setOf(1, 2, 3, 4)
+
+            f shouldNotBe null
+            f shouldHaveSize 4
+        }
+
+        test("MutableSet는 변경이 가능하다.") {
+            val mutableSet = mutableSetOf(1, 2, 3, 4)
+            val isAdded = mutableSet.add(5)
+
+            isAdded shouldBe true
+            mutableSet shouldHaveSize 5
+            mutableSet shouldContainExactly setOf(1, 2, 3, 4, 5)
+        }
+
+        test("MutableList는 기존 MutableList의 plus를 통해 element 추가가 가능하다.") {
+            val mutableSet = mutableSetOf(1, 2, 3)
+            val mutableSet2 = mutableSet.plus(4)
+
+            mutableSet shouldHaveSize 3
+            mutableSet2 shouldHaveSize 4
+            mutableSet shouldNotBeSameInstanceAs mutableSet2
+        }
+
+        test("setOf로 생성된 Set은 plus를 통해 element 추가가 가능하다.") {
+            val set = setOf(1, 2, 3, 4)
+            val set2 = set.plus(5)
+
+            set shouldHaveSize 4
+            set2 shouldHaveSize 5
+            set2 shouldContainExactly setOf(1, 2, 3, 4, 5)
+        }
+
+        test("setOf로 생성된 Set은 plus를 통해 element 추가가 가능하다.") {
+            val set = setOf(1, 2, 3)
+            val set2 = set.plus(4)
+
+            set shouldHaveSize 3
+            set2 shouldHaveSize 4
+            set shouldNotBeSameInstanceAs set2
+        }
+
+        test("setOf는 중복된 element를 허용하지 않는다.") {
+            val set = setOf(1, 2, 3, 1, 1, 2, 3, 3)
+
+            set shouldHaveSize 3
+            set shouldContainExactly setOf(1, 2, 3)
+        }
     }
 
     test("MutableMap은 기존 MutableMap의 put을 통해 element 추가가 가능하다.") {
