@@ -12,7 +12,7 @@ import io.kotest.matchers.types.shouldNotBeSameInstanceAs
 
 class CollectionTest : FunSpec({
 
-    context("enabled test run") {
+    context("test: List") {
         test("emptyList의 size는 0이다.") {
             val emptyList: List<Int> = emptyList()
 
