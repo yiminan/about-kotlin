@@ -60,6 +60,15 @@ class CollectionTest : FunSpec({
             immutableList shouldHaveSize 5
             immutableList shouldContainExactly listOf(1, 2, 3, 4, 5)
         }
+
+        test("MutableList는 기존 MutableList의 plus를 통해 element 추가가 가능하다.") {
+            val mutableList = mutableListOf(1, 2, 3)
+            val mutableList2 = mutableList.plus(4)
+
+            mutableList shouldHaveSize 3
+            mutableList2 shouldHaveSize 4
+            mutableList shouldNotBeSameInstanceAs mutableList2
+        }
     }
 
     context("test: Set") {
